@@ -4,9 +4,11 @@
       <label for="chkAll">전체 선택</label>
       <input type="checkbox" id="chkAll">
     </div>
-    <div class="input_field">
-      <input type="text" @keyup.enter="registerTodo">
-    </div>
+    <!-- <input type="text" @keyup.enter="registerTodo"> -->
+    <v-text-field
+      label="to do........"
+      @keyup.enter="registerTodo"
+    ></v-text-field>
   </div>
 </template>
 
@@ -28,6 +30,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.wrap_input {
+  display: flex;
 
+  .checkbox {
+    
+  }
+}
 </style>

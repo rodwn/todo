@@ -1,5 +1,5 @@
 <template>
-  <div id="todo_box">
+  <div class="wrap_todo">
     <TodoInput @registerTodo="registerTodo" />
     <TodoList :propTodos="propTodos" />
   </div>
@@ -25,6 +25,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.wrap_todo {
+  width: 800px;
+  margin: 0 auto;
+}
 </style>
