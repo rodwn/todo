@@ -1,28 +1,47 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+    <main>
+      <Todo
+        @registerTodo="registerTodo"
+        :propTodos="todos"
+        />
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Todo from '@/components/Todo.vue'
 
 export default {
+  data () {
+    return {
+      title: 'title!',
+      todos: [],
+    }
+  },
   name: 'App',
   components: {
-    HelloWorld
+    Todo
+  },
+  methods: {
+    registerTodo (val) {
+      console.log('this is App');
+      this.todos.push(val);
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #ccc;
+}
+header {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
