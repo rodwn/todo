@@ -1,10 +1,31 @@
 <template>
   <div class="wrap_list">
     <ul class="list">
-      <TodoItem />
+      <todo-item
+        v-for="todo in propTodosItem"
+        :todoItem="todo"
+        :key="todo.id"
+        @isDone="emitState"
+      />
     </ul>
-    <div>
-      {{propTodos}}
+    <div class="util" v-show="propTodosItem.length">
+      <div class="count" >
+        <em>{{ propTodosItem.length }}</em>
+        <span v-if="propTodosItem.length < 2">item left</span>
+        <span v-else>items left</span>
+      </div>
+      <ul class="filter">
+        <li>
+          <button type="button">all</button>
+        </li>
+        <li>
+          <button type="button">active</button>
+        </li>
+        <li>
+          <button type="button">complete</button>
+        </li>
+      </ul>
+      <button type="button">clear completed</button>
     </div>
   </div>
 </template>
@@ -14,15 +35,37 @@ import TodoItem from '@/components/TodoItem.vue'
 
 export default {
   name: 'TodoList',
-  props: ['propTodos'],
   components: {
     TodoItem
+  },
+  computed: {
+    
+  },
+  props: ['propTodosItem'],
+  methods: {
+    emitState (bool, index) {
+      this.$emit('isDone', bool, index);
+    }
   }
 }
 </script>
 
-<style>
-.list {
+<style lang="scss">
+ul {
   list-style: none;
+}
+.util,
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter {
+  column-gap: 20px;
+
+  button {
+    width: 60px;
+  }
 }
 </style>

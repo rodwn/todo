@@ -3,9 +3,11 @@
     <header>
       <h1>{{ title }}</h1>
     </header>
+    <v-divider></v-divider>
     <main>
       <Todo
-        @registerTodo="registerTodo"
+        @todoVal="registerTodo"
+        @isDone="updateStat"
         :propTodos="todos"
         />
     </main>
@@ -28,8 +30,12 @@ export default {
   },
   methods: {
     registerTodo (val) {
-      console.log('this is App');
-      this.todos.push(val);
+      // console.log('this is App');
+      this.todos.push({isDone: false, item: val});
+    },
+    updateStat (bool, index) {
+      console.log(index);
+      this.todos[0].isDone= bool;
     }
   }
 }
@@ -39,9 +45,10 @@ export default {
 html {
   margin: 0;
   padding: 0;
-  background-color: #ccc;
+  background-color: #f5f5f5;
 }
 header {
   text-align: center;
+  padding: 20px 0;
 }
 </style>

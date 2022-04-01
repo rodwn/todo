@@ -1,7 +1,7 @@
 <template>
   <div class="wrap_todo">
-    <TodoInput @registerTodo="registerTodo" />
-    <TodoList :propTodos="propTodos" />
+    <TodoInput @todoInputFirst="emitTodoValue" />
+    <TodoList :propTodosItem="propTodos" @isDone="emitState" />
   </div>
 </template>
 
@@ -17,9 +17,12 @@ export default {
     TodoList,
   },
   methods: {
-    registerTodo (val) {
-      console.log('this is Todo');
-      this.$emit('registerTodo', val)
+    emitTodoValue (val) {
+      // console.log('this is Todo');
+      this.$emit('todoVal', val)
+    },
+    emitState (bool, index) {
+      this.$emit('isDone', bool, index)
     }
   }
 }
